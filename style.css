@@ -1,0 +1,434 @@
+/* :::: >>>> animal_memory stylesheet <<<< ::::*/
+
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+*{margin: 0; padding: 0; box-sizing: border-box;}
+
+:root{
+    font-family: 'Lilita One', Tahoma, sans-serif;
+    font-size: 100%;
+    --cardWidth: 8rem;
+    --cardHeight: 8rem;
+    --memoryFontSize: 3.5rem;
+    --mainColor: rgb(33, 156, 144);
+    --displayColor:rgb(60, 72, 107);
+    --bodyColor:rgb(255, 225, 148);
+    --cardFace:cornflowerblue;
+}
+
+body{ 
+    width: 100%;
+    height: 100%;
+    margin: 0em auto;
+    background-color:var(--bodyColor);
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+/* :::: >>>> --- cards --- <<<< :::: */
+.memory_wrap{
+    margin-top: 12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: calc(var(--cardWidth) * 6);
+    height: calc(var(--cardHeight) * 6);
+    gap: 1.2rem;
+    perspective: 1000px;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: var(--mainColor);
+    box-shadow:
+    0rem 0.8rem 1.4rem rgba(0, 0, 0, 0.6);
+}
+
+.card{
+    position: relative;
+    cursor: pointer;
+    order: unset;
+    margin: 0.4rem;
+    border-radius: 11px;
+    width: var(--cardWidth);
+    height: var(--cardHeight);  
+    transform-style: preserve-3d;
+    transition: all 0.4s ease-in-out;
+    box-shadow:
+    0rem 0.4rem 1rem rgba(0, 0, 0, 0.8);
+}
+
+.back{
+    position: absolute;
+    cursor: pointer;
+    width: var(--cardWidth);
+    height: var(--cardHeight);
+    border: 0.2rem solid rgb(255, 255, 255);
+    border-radius: 11px;
+    backface-visibility: hidden;
+    background-image:
+    repeating-linear-gradient(45deg,
+        rgba(53, 0, 132, 0.5) 1rem,
+        transparent,
+        dodgerblue 2rem),
+
+    repeating-linear-gradient(135deg, 
+        rgb(0, 0, 0) 1rem, 
+        rgb(255, 255, 212) 0.08rem,
+        dodgerblue 2rem);
+
+    box-shadow:
+    inset 0em 0em 1em rgba(0, 3, 76, 0.8);
+}
+
+.front{
+    position: absolute;
+    cursor: pointer;  
+    width: var(--cardWidth);
+    height: var(--cardHeight);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--memoryFontSize);
+    border: 0.08rem solid black;
+    border-radius: 11px;
+    box-shadow:
+    inset 0.1em 0.1em 0.6em rgba(0, 0, 0, 0.4);
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    background-color: var(--cardFace);
+}
+
+/* ::: game status display ::: */
+.memory_display{
+    position: absolute;
+    z-index: 90;
+    display: grid;
+    grid-template-columns: 1fr, 1.5fr, 0.5fr, 0.5fr;
+    grid-template-rows: repeat(2,1fr);
+    gap: 5px;
+    top: 6px;
+    width: calc(var(--cardWidth) * 6);
+    height: 10rem;
+    /* top | right | bottom | left */
+    margin: 0.8rem 0.25rem 0 0;
+    padding: 1.2rem 2rem 1.2rem 2rem;
+    align-items: first baseline;
+    color: white;
+    text-shadow: 
+    -1px -1px 1px black, 
+    1px 1px 1px black,
+    0px 0px 0.8rem black;
+    border-radius: 8px;
+    background-color: var(--displayColor);
+    box-shadow:
+    0rem 0.8rem 1.4rem rgba(0, 0, 0, 0.6);
+}
+
+h3{
+    font-weight: 500;
+    font-size: 2.6rem;
+    letter-spacing: 4px;
+}
+#header_top{
+    grid-area: 1/1/1/1;
+}
+#header_down{
+    grid-area: 2/1/2/1;
+}
+
+/* :::: --- flip style --- :::: */
+.flips{
+    grid-area: 1/2/1/2;
+}
+.matches{
+    grid-area: 2/2/2/2;
+}
+.flips, .matches{
+    margin-left: 1rem;
+    font-weight: 200;
+    font-size: 1.4rem;
+    letter-spacing: 4px;
+}
+#flip_count, #match_count{
+    font-size: 1.8rem;
+}
+
+/* :::: --- button --- :::: */
+#reset_button{
+    grid-area: 1/4/1/4;
+    cursor: pointer;
+    width: 4rem;
+    height: 4rem;
+    transform-origin: center;
+    margin-left: 60%;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: white;
+    text-shadow: 
+    -1px -1px 1px black, 
+    1px 1px 1px black,
+    0px 0px 4px black;
+    border: initial;
+    background: transparent;
+}
+.button_reset_turn{
+    animation: 0.6s reset_turn linear both;
+    transition: 0.4s;
+}
+@keyframes reset_turn{
+    0%{
+        transform: rotate(0deg);
+        filter: blur(0px);
+    }
+    50%{
+        filter: blur(2px);
+    }
+    100%{
+        transform: rotate(360deg);
+        filter: blur(0px); 
+    }
+}
+
+/* :::: --- game over modal --- :::: */
+.game_over_modal{
+    z-index: 99;
+    position: fixed; 
+    display: none;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-image:
+    radial-gradient(
+    rgba(30, 143, 255, 0.6),
+    rgba(26, 0, 128, 0.9));
+}
+.modal_content{
+    height: 40rem;
+    width: 40rem; 
+    /* top | right | bottom | left */
+    margin: 10rem auto;
+    padding: 7rem;
+    font-size: 3rem;
+    color: yellow;
+    transform: rotate(-4deg);
+    border: 0.15rem solid yellow;
+    border-radius: 100%;
+    background-color: rgb(255, 41, 84);
+    box-shadow:
+    0rem 0rem 2rem yellow;
+    animation: showModal 0.4s linear forwards;
+}
+
+@keyframes showModal{
+    from{
+        transform: scale(0) rotate(0deg);
+    }
+    to{
+        transform: scale(1) rotate(-12deg);
+    }
+}
+  
+.close{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3.6rem;
+    font-weight: bold;
+    color:yellow;
+    float: right;
+}
+
+.close:hover,
+.close:focus {
+    cursor: pointer;
+    color: rgb(255, 250, 165);
+    transform: scale(1.1);
+}
+
+
+/* :::: JS classes for click event :::: */
+.turn_card{ 
+    transform: rotateY(180deg);
+    transition: 0.4s ease-in-out;
+}
+
+.flipBack{
+    transform: rotateY(-180deg);
+}
+
+/* :::: --- JS Classes for game animations --- :::: */
+.match_animation{
+    animation: match 0.8s linear forwards;
+    animation-iteration-count: 1;
+}
+@keyframes match{
+    0%{
+        transform: scale(1);
+    }
+    25%{
+        transform: scale(1.1);
+    }
+    50%{
+        transform: scale(1);
+    }
+    75%{
+        transform: scale(1.1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+
+/* :::: >>>> -- reponisve -- <<<< :::: */
+/* responsive widths */
+@media only screen and (max-width: 1040px) {
+    :root{
+        --cardWidth: 6rem;
+        --cardHeight: 6rem;
+    }
+    .modal_content{
+        font-size: 1.2rem;
+    }
+    .memory_wrap{
+        margin-top: 10rem;
+    }
+}
+@media only screen and (max-width: 590px) {
+    :root{
+        --cardWidth: 4.4rem;
+        --cardHeight: 4.4rem;
+        --memoryFontSize: 3.2rem;
+    }
+    .memory_display{
+        height: 14rem;
+        grid-template-columns: 1fr, 1.5fr, 0.5fr, 0.5fr;
+        grid-template-rows: repeat(4,1fr);
+        gap: 2px;
+    }
+    .flips{
+        grid-area: 3/1/3/2;
+    }
+    .matches{
+        grid-area: 4/1/4/2;
+    }
+    #reset_button{
+        grid-area: 1/3/1/3;
+    }
+
+}
+@media only screen and (max-width: 447px) {
+    :root{
+        --cardWidth: 3.6rem;
+        --cardHeight: 3.6rem;
+        --memoryFontSize: 2.8rem;
+    }
+    .modal_content{
+        font-size: 1rem;
+    }
+    .memory_wrap{
+        gap: 0.25rem;
+        padding: 2px;
+        margin-top: 8rem;
+    }  
+    .memory_display{
+        height: 16rem;
+        top: 1px;
+    }
+    h3{
+        font-size: 2rem;
+    }
+    #reset_button{
+        grid-area: 1/2/1/2;
+    }
+}
+@media only screen and (max-width: 325px) {
+    :root{
+        --cardWidth: 3.2rem;
+        --cardHeight: 3.2rem;
+        --memoryFontSize: 2rem;
+    }
+    .modal_content{
+        font-size: 0.6rem;
+    }
+    .memory_wrap{
+        gap: 0.1rem;
+    } 
+}
+
+/* responsive heights */
+@media only screen and (max-height: 920px) {
+    .memory_wrap{
+        margin-top: 14rem;
+    }
+}
+@media only screen and (max-height: 860px) {
+    .memory_wrap{
+        margin-top: 18rem;
+    }
+}
+@media only screen and (max-height: 800px) {
+    .memory_wrap{
+        margin-top: 26rem;
+    }
+}
+@media only screen and (max-height: 690px) {
+    .memory_wrap{
+        margin-top: 32rem;
+    }
+}
+@media only screen and (max-height: 590px) {
+    .memory_wrap{
+        margin-top: 38rem;
+    }
+}
+@media only screen and (max-height: 490px) {
+    .memory_wrap{
+        margin-top: 42rem;
+    }
+}
+@media only screen and (max-height: 400px) {
+    .memory_wrap{
+        margin-top: 52rem;
+    }
+}
+
+/* responsive modal */
+@media only screen and (max-width: 1040px) {
+    .modal_content{
+        margin: 14rem auto;
+        font-size: 2rem;
+        height: 30rem;
+        width: 30rem; 
+        padding: 6rem;
+    }
+    .close{
+        font-size: 2.2rem;
+        margin: 0.5rem;
+    }
+}
+@media only screen and (max-width: 570px) {
+    .modal_content{
+        font-size: 1.5rem;
+        height: 22rem;
+        width: 22rem;
+        padding: 4rem; 
+    }
+    .close{
+        font-size: 1.2rem;
+    }
+}
+@media only screen and (max-width: 360px) {
+    .modal_content{
+        font-size: 0.8rem;
+        height: 12rem;
+        width: 12rem; 
+        padding: 2rem;
+    }
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal_Memory_Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="memory_game">
+
+    <div class="game_over_modal">
+
+        <div class="modal_content">
+            <span class="close">X</span>
+            <br>
+            <p class="modal_message"></p>           
+        </div>
+
+    </div>
+
+    <section class="memory_display">
+
+        <h3 id="header_top">Animal</h3>
+        <h3 id="header_down">Memory</h3>
+        <h6 class="flips">Flips: <span id="flip_count"> </span></h6>
+        <h6 class="matches">Matches: <span id="match_count"> </span></h6>
+        <button id="reset_button">&#10227</button>
+
+    </section>
+
+    <section class="memory_wrap">
+
+        <div class="card" data-image="bear" id="card_001">
+            <div class="back"></div>
+            <div class="front">&#128059</div>
+        </div>
+
+        <div class="card" data-image="cat" id="card_002">
+            <div class="back"></div>
+            <div class="front">&#128568</div>
+        </div>
+
+        <div class="card" data-image="hamster" id="card_003">
+            <div class="back"></div>
+            <div class="front">&#128057</div>
+        </div>
+
+        <div class="card" data-image="dog" id="card_004">
+            <div class="back"></div>
+            <div class="front">&#128054</div>
+        </div>
+
+        <div class="card" data-image="bunny" id="card_005">
+            <div class="back"></div>
+            <div class="front">&#128048</div>
+        </div>
+
+        <div class="card" data-image="pig" id="card_006">
+            <div class="back"></div>
+            <div class="front">&#128055</div>
+        </div>
+
+        <div class="card" data-image="cow" id="card_007">
+            <div class="back"></div>
+            <div class="front">&#128046</div>
+        </div>
+
+        <div class="card" data-image="mouse" id="card_008">
+            <div class="back"></div>
+            <div class="front">&#128045</div>
+        </div>
+        <div class="card" data-image="bear" id="card_009">
+            <div class="back"></div>
+            <div class="front">&#128059</div>
+        </div>
+
+        <div class="card" data-image="cat" id="card_010">
+            <div class="back"></div>
+            <div class="front">&#128568</div>
+        </div>
+
+        <div class="card" data-image="hamster" id="card_011">
+            <div class="back"></div>
+            <div class="front">&#128057</div>
+        </div>
+
+        <div class="card" data-image="dog" id="card_012">
+            <div class="back"></div>
+            <div class="front">&#128054</div>
+        </div>
+
+        <div class="card" data-image="bunny" id="card_013">
+            <div class="back"></div>
+            <div class="front">&#128048</div>
+        </div>
+
+        <div class="card" data-image="pig" id="card_014">
+            <div class="back"></div>
+            <div class="front">&#128055</div>
+        </div>
+        
+        <div class="card" data-image="cow" id="card_015">
+            <div class="back"></div>
+            <div class="front">&#128046</div>
+        </div>
+
+        <div class="card"data-image="mouse" id="card_016">
+            <div class="back" ></div>
+            <div class="front">&#128045</div>
+        </div>
+  
+    </section>
+
+</main>
+
+
+<script src="main.js"></script>
+
+</body>
+
+</html>
