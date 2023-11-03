@@ -1,20 +1,19 @@
 /* :::: >>>> animal_memory stylesheet <<<< ::::*/
 
-
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
 
 *{margin: 0; padding: 0; box-sizing: border-box;}
 
 :root{
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Titan One', sans-serif;
     font-size: 100%;
     --cardWidth: 8rem;
     --cardHeight: 8rem;
     --memoryFontSize: 3.5rem;
-    --mainColor: rgb(33, 156, 144);
-    --displayColor:rgb(60, 72, 107);
-    --bodyColor:rgb(255, 225, 148);
+    --mainColor:rgb(252, 224, 155) ;
+    --displayColor: rgb(32, 143, 130);
+    --bodyColorOne:rgb(60, 72, 107);
+    --bodyColorTwo: cadetblue;
     --cardFace:rgb(73, 137, 255);
 }
 
@@ -22,7 +21,12 @@ body{
     width: 100%;
     height: 100%;
     margin: 0em auto;
-    background-color:var(--bodyColor);
+    background-image: repeating-linear-gradient(
+        180deg,
+        var(--bodyColorOne)2%,
+        var(--bodyColorTwo)4%,
+        var(--bodyColorOne)6%
+    );
 }
 
 main{
