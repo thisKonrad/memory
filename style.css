@@ -1,45 +1,87 @@
 /* :::: >>>> animal_memory stylesheet <<<< ::::*/
 
-@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+@font-face {
+    font-family: good-choice;
+    src: url('./assets/Good-Choice.woff');
+}
 
 *{margin: 0; padding: 0; box-sizing: border-box;}
 
 :root{
-    font-family: 'Titan One', sans-serif;
+    font-family: good-choice, monospace;
     font-size: 100%;
     --cardWidth: 8rem;
     --cardHeight: 8rem;
     --memoryFontSize: 3.5rem;
     --mainColor:rgb(252, 224, 155) ;
     --displayColor: rgb(32, 143, 130);
-    --bodyColorOne:rgb(60, 72, 107);
-    --bodyColorTwo: cadetblue;
-    --cardFace:rgb(73, 137, 255);
+    --bodyColorOne:rgb(70, 110, 231);
+    --bodyColorTwo: rgb(81, 196, 116);
+    --cardFace:dodgerblue;
+    --textColor: rgb(255, 224, 49);
+    --textShadow:rgb(38, 0, 143);
 }
 
 body{ 
     width: 100%;
     height: 100%;
     margin: 0em auto;
-    background-image: repeating-linear-gradient(
-        180deg,
-        var(--bodyColorOne)2%,
-        var(--bodyColorTwo)4%,
-        var(--bodyColorOne)6%
-    );
+    background-color:lemonchiffon;
 }
 
-main{
-    display: flex;
+
+.memory_game{
+    display: grid;
+    grid-template-columns: 0.75fr 0.75fr 0.75fr 0.75fr;
+    grid-template-rows: 0.25fr 1.5fr 0.25fr;
+    gap: 1rem;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100vh;
+}
+
+/* ::: game status display ::: */
+.memory_display{
+    grid-area: 1/ 2/ 1/ 4;
+    align-self: center;
+    position: relative;
+    z-index: 90;
+    display: grid;
+    grid-template-columns: 1fr, 1.5fr, 0.5fr, 0.5fr;
+    grid-template-rows: repeat(2,1fr);
+    gap: 5px;
+    top: 6px;
+    width: calc(var(--cardWidth) * 6);
+    height: 10rem;
+    /* top | right | bottom | left */
+    margin: 0.8rem 0.25rem 0 0;
+    padding: 1.2rem 2rem 1.2rem 2rem;
+    align-items: first baseline;
+    color: var(--textColor);
+    text-shadow: 
+    -1px -1px 1px var(--textShadow), 
+    1px 1px 1px black,
+    0px 0px 1rem var(--textShadow);
+    border-radius: 8px;
+    background-image:url('./assets/sawtooth_lime_green_fine.svg');
+    box-shadow:
+    0rem 0.8rem 1.4rem rgba(0, 0, 0, 0.6);
+}
+
+h3{
+    font-weight: 500;
+    font-size: 2.6rem;
+    letter-spacing: 4px;
+}
+#header_top{
+    grid-area: 1/1/1/1;
+}
+#header_down{
+    grid-area: 2/1/2/1;
 }
 
 /* :::: >>>> --- cards --- <<<< :::: */
 .memory_wrap{
-    margin-top: 12rem;
+    grid-area: 2/ 2/ 2/ 4;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,7 +92,7 @@ main{
     perspective: 1000px;
     padding: 1rem;
     border-radius: 12px;
-    background-color: var(--mainColor);
+    background-image: url('./assets/diamond-sunset.svg');
     box-shadow:
     0rem 0.8rem 1.4rem rgba(0, 0, 0, 0.6);
 }
@@ -111,44 +153,6 @@ main{
     background-color: var(--cardFace);
 }
 
-/* ::: game status display ::: */
-.memory_display{
-    position: absolute;
-    z-index: 90;
-    display: grid;
-    grid-template-columns: 1fr, 1.5fr, 0.5fr, 0.5fr;
-    grid-template-rows: repeat(2,1fr);
-    gap: 5px;
-    top: 6px;
-    width: calc(var(--cardWidth) * 6);
-    height: 10rem;
-    /* top | right | bottom | left */
-    margin: 0.8rem 0.25rem 0 0;
-    padding: 1.2rem 2rem 1.2rem 2rem;
-    align-items: first baseline;
-    color: white;
-    text-shadow: 
-    -1px -1px 1px black, 
-    1px 1px 1px black,
-    0px 0px 0.8rem black;
-    border-radius: 8px;
-    background-color: var(--displayColor);
-    box-shadow:
-    0rem 0.8rem 1.4rem rgba(0, 0, 0, 0.6);
-}
-
-h3{
-    font-weight: 500;
-    font-size: 2.6rem;
-    letter-spacing: 4px;
-}
-#header_top{
-    grid-area: 1/1/1/1;
-}
-#header_down{
-    grid-area: 2/1/2/1;
-}
-
 /* :::: --- flip style --- :::: */
 .flips{
     grid-area: 1/2/1/2;
@@ -176,11 +180,11 @@ h3{
     margin-left: 60%;
     font-size: 2.4rem;
     font-weight: 600;
-    color: white;
+    color: var(--textColor);
     text-shadow: 
-    -1px -1px 1px black, 
+    -1px -1px 1px var(--textShadow), 
     1px 1px 1px black,
-    0px 0px 4px black;
+    0px 0px 8px var(--textShadow);
     border: initial;
     background: transparent;
 }
@@ -204,6 +208,7 @@ h3{
 
 /* :::: --- game over modal --- :::: */
 .game_over_modal{
+    grid-area: 2/ 2/ 2/ 3;
     z-index: 99;
     position: fixed; 
     display: none;
@@ -293,21 +298,29 @@ h3{
 }
 
 
-/* :::: >>>> -- reponisve -- <<<< :::: */
+/* :::: >>>> -- reponisveness -- <<<< :::: */
 /* responsive widths */
 @media only screen and (max-width: 1040px) {
     :root{
         --cardWidth: 6rem;
         --cardHeight: 6rem;
     }
+
     .modal_content{
-        font-size: 1.2rem;
+        margin: 14rem auto;
+        font-size: 1.4rem;
+        height: 30rem;
+        width: 30rem; 
+        padding: 6rem;
     }
-    .memory_wrap{
-        margin-top: 10rem;
+    .close{
+        font-size: 2.2rem;
+        margin: 0.5rem;
     }
+   
 }
 @media only screen and (max-width: 590px) {
+
     :root{
         --cardWidth: 4.4rem;
         --cardHeight: 4.4rem;
@@ -328,6 +341,15 @@ h3{
     #reset_button{
         grid-area: 1/3/1/3;
     }
+    .modal_content{
+        font-size: 1.5rem;
+        height: 22rem;
+        width: 22rem;
+        padding: 4rem; 
+    }
+    .close{
+        font-size: 1.2rem;
+    }
 
 }
 @media only screen and (max-width: 447px) {
@@ -342,7 +364,6 @@ h3{
     .memory_wrap{
         gap: 0.25rem;
         padding: 2px;
-        margin-top: 8rem;
     }  
     .memory_display{
         height: 16rem;
@@ -367,71 +388,6 @@ h3{
     .memory_wrap{
         gap: 0.1rem;
     } 
-}
-
-/* responsive heights */
-@media only screen and (max-height: 920px) {
-    .memory_wrap{
-        margin-top: 14rem;
-    }
-}
-@media only screen and (max-height: 860px) {
-    .memory_wrap{
-        margin-top: 18rem;
-    }
-}
-@media only screen and (max-height: 800px) {
-    .memory_wrap{
-        margin-top: 26rem;
-    }
-}
-@media only screen and (max-height: 690px) {
-    .memory_wrap{
-        margin-top: 32rem;
-    }
-}
-@media only screen and (max-height: 590px) {
-    .memory_wrap{
-        margin-top: 38rem;
-    }
-}
-@media only screen and (max-height: 490px) {
-    .memory_wrap{
-        margin-top: 42rem;
-    }
-}
-@media only screen and (max-height: 400px) {
-    .memory_wrap{
-        margin-top: 52rem;
-    }
-}
-
-/* responsive modal */
-@media only screen and (max-width: 1040px) {
-    .modal_content{
-        margin: 14rem auto;
-        font-size: 2rem;
-        height: 30rem;
-        width: 30rem; 
-        padding: 6rem;
-    }
-    .close{
-        font-size: 2.2rem;
-        margin: 0.5rem;
-    }
-}
-@media only screen and (max-width: 570px) {
-    .modal_content{
-        font-size: 1.5rem;
-        height: 22rem;
-        width: 22rem;
-        padding: 4rem; 
-    }
-    .close{
-        font-size: 1.2rem;
-    }
-}
-@media only screen and (max-width: 360px) {
     .modal_content{
         font-size: 0.8rem;
         height: 12rem;
