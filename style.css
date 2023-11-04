@@ -1,11 +1,9 @@
 /* :::: >>>> animal_memory stylesheet <<<< ::::*/
 
-
 @font-face {
     font-family: good-choice;
     src: url('./assets/Good-Choice.woff');
 }
-
 
 *{margin: 0; padding: 0; box-sizing: border-box;}
 
@@ -19,7 +17,7 @@
     --displayColor: rgb(32, 143, 130);
     --bodyColorOne:rgb(70, 110, 231);
     --bodyColorTwo: rgb(81, 196, 116);
-    --cardFace:rgb(73, 137, 255);
+    --cardFace:dodgerblue;
     --textColor: rgb(255, 224, 49);
     --textShadow:rgb(38, 0, 143);
 }
@@ -67,13 +65,11 @@ body{
     text-shadow: 
     -1px -1px 1px var(--textShadow), 
     1px 1px 1px black,
-    0px 0px 0.8rem black;
+    0px 0px 1rem var(--textShadow);
     border-radius: 8px;
-/*     background-color: var(--displayColor); */
+    background-image:url('./assets/sawtooth_lime_green_fine.svg');
     box-shadow:
     0rem 0.8rem 1.4rem rgba(0, 0, 0, 0.6);
-
-    background-image:url('./assets/sawtooth_green.svg')
 }
 
 h3{
@@ -193,7 +189,7 @@ h3{
     text-shadow: 
     -1px -1px 1px var(--textShadow), 
     1px 1px 1px black,
-    0px 0px 4px black;
+    0px 0px 8px var(--textShadow);
     border: initial;
     background: transparent;
 }
