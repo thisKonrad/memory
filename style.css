@@ -1,20 +1,27 @@
 /* :::: >>>> animal_memory stylesheet <<<< ::::*/
 
-@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+
+@font-face {
+    font-family: good-choice;
+    src: url('./assets/Good-Choice.woff');
+}
+
 
 *{margin: 0; padding: 0; box-sizing: border-box;}
 
 :root{
-    font-family: 'Titan One', sans-serif;
+    font-family: good-choice, monospace;
     font-size: 100%;
     --cardWidth: 8rem;
     --cardHeight: 8rem;
     --memoryFontSize: 3.5rem;
     --mainColor:rgb(252, 224, 155) ;
     --displayColor: rgb(32, 143, 130);
-    --bodyColorOne:rgb(60, 72, 107);
-    --bodyColorTwo: cadetblue;
+    --bodyColorOne:rgb(70, 110, 231);
+    --bodyColorTwo: rgb(81, 196, 116);
     --cardFace:rgb(73, 137, 255);
+    --textColor: rgb(255, 224, 49);
+    --textShadow:rgb(38, 0, 143);
 }
 
 body{ 
@@ -56,15 +63,17 @@ body{
     margin: 0.8rem 0.25rem 0 0;
     padding: 1.2rem 2rem 1.2rem 2rem;
     align-items: first baseline;
-    color: white;
+    color: var(--textColor);
     text-shadow: 
-    -1px -1px 1px black, 
+    -1px -1px 1px var(--textShadow), 
     1px 1px 1px black,
     0px 0px 0.8rem black;
     border-radius: 8px;
-    background-color: var(--displayColor);
+/*     background-color: var(--displayColor); */
     box-shadow:
     0rem 0.8rem 1.4rem rgba(0, 0, 0, 0.6);
+
+    background-image:url('./assets/sawtooth_green.svg')
 }
 
 h3{
@@ -92,7 +101,7 @@ h3{
     perspective: 1000px;
     padding: 1rem;
     border-radius: 12px;
-    background-color: var(--mainColor);
+    background-image: url('./assets/diamond-sunset.svg');
     box-shadow:
     0rem 0.8rem 1.4rem rgba(0, 0, 0, 0.6);
 }
@@ -180,9 +189,9 @@ h3{
     margin-left: 60%;
     font-size: 2.4rem;
     font-weight: 600;
-    color: white;
+    color: var(--textColor);
     text-shadow: 
-    -1px -1px 1px black, 
+    -1px -1px 1px var(--textShadow), 
     1px 1px 1px black,
     0px 0px 4px black;
     border: initial;
