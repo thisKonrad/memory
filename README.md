@@ -2,7 +2,6 @@
 
 Animal Memory Game _ Pure CSS and Vanilla Script
 
-play @ codepen: https://codepen.io/Konrad-Wittich/pen/JjxGyRv
 
 This tiny memory game is only done with html, css and javascript.
 Its build for all children and grown up children...
