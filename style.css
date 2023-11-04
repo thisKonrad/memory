@@ -26,12 +26,7 @@ body{
     width: 100%;
     height: 100%;
     margin: 0em auto;
-    background-image: repeating-linear-gradient(
-        180deg,
-        var(--bodyColorOne)2%,
-        var(--bodyColorTwo)4%,
-        var(--bodyColorOne)6%
-    );
+    background-color:lemonchiffon;
 }
 
 
